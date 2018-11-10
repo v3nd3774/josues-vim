@@ -59,6 +59,10 @@ else
     set smartindent
     imap <C-Return> <CR><CR><C-o>k<Tab>
     " end of autoindent
+    " nerdtree settings
+    autocmd VimEnter * NERDTree
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    " end of nerdtree settings
 EOF
   if [ -f "$MY_CONFIGS_PATH" ];then
     echo "Successfully created $MY_CONFIGS_PATH"
