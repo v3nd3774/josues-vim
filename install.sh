@@ -67,4 +67,21 @@ EOF
   fi
 fi
 # Done with add custom my_configs.vim
+# Get colorschemes
+COLORSCHEMES_PATH=$VIM_HOME/my_plugins/colorschemes
+GITHUB_URL=https://github.com/flazz/vim-colorschemes.git
+if [ -d "$COLORSCHEMES_PATH" ];then
+  echo "Found colorschemes at $COLORSCHEMES_PATH, skipping clone operation."
+else
+  echo "Didn't find colorschemes. Cloning $GITHUB_URL into $COLORSCHEMES_PATH"
+  git clone $GITHUB_URL $COLORSCHEMES_PATH
+  if [ -d "$COLORSCHEMES_PATH" ];then
+    echo "Successfully cloned $GITHUB_URL into $COLORSCHEMES_PATH"
+  else
+    exit 1
+  fi
+  echo "adding preferred colorscheme to $MY_CONFIGS_PATH"
+  echo "colorscheme spacegray" >> $MY_CONFIGS_PATH
+fi
+# Done with get colorschemes
 echo "Done setting up Josue's vim setup. Enjoy! :)"
